@@ -1,7 +1,10 @@
 import OpenAI from "openai";
 
+// const testKey= "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",
+
+
 const openai = new OpenAI({
-  apiKey: "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",
+//   apiKey: testKey,
 });
 
 const response = await openai.responses.create({
@@ -12,9 +15,5 @@ const response = await openai.responses.create({
   store: true,
 });
 
-
 console.log(response);
-
-
-
 // response.then((result) => console.log(result.output_text));
