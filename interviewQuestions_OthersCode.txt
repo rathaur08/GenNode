@@ -1,1 +1,25 @@
 // Notes
+--------- Start demo code ----------
+
+import OpenAI from "openai";
+
+let testKey = "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"; // ✅ secure key
+
+const openai = new OpenAI({
+  apiKey: testKey, // ✅ secure key
+});
+
+const run = async () => {
+  const response = await openai.responses.create({
+    model: "gpt-4o-mini",
+    input: "Apple color is",
+    store: true,
+  });
+
+  console.log(response.output[0].content[0].text); // ✅ access text
+};
+
+run();
+
+--------- END demo code ----------
+
