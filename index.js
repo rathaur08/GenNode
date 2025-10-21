@@ -1,16 +1,28 @@
 import OpenAI from "openai";
+import dotenv from "dotenv";
 
-let testKey = "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"; // ✅ secure key
+dotenv.config();
 
-const openai = new OpenAI({
-  apiKey: testKey,
-});
+let testKey = "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"; // ✅ secure key
 
+const openai = new OpenAI({ apiKey: process.env.TEST_KEY });
+
+// const response = openai.responses.create({
+//   instructions: "Give result in 10 word.",
+//   model: "gpt-4o-mini",
+//   input: "Apple color is",
+//   store: true,
+// });
+
+// OpenAi Roles Example
 const response = openai.responses.create({
+  input: [
+    { role: "system", content: "Answer in Hindi Language" },
+    { role: "developer", content: "give a basic example in JS" },
+    { role: "user", content: "What is Coding" },
+  ],
   model: "gpt-4o-mini",
-  input: "Apple color is",
-  store: true,
 });
 
-console.log("data key-1", response.output_text);
+// console.log("data key-1", response.output_text);
 response.then((result) => console.log("data key-2", result.output_text));
