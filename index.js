@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import dotenv from "dotenv";
+import { encoding_for_model } from "tiktoken";
 
 dotenv.config();
 
@@ -14,15 +15,27 @@ const openai = new OpenAI({ apiKey: process.env.TEST_KEY });
 //   store: true,
 // });
 
+
+const prompt = "What is Coding answer with explane";
+const model = "gpt-4o-mini";
+
 // OpenAi Roles Example
 const response = openai.responses.create({
   input: [
-    { role: "system", content: "Answer in Hindi Language" },
-    { role: "developer", content: "give a basic example in JS" },
-    { role: "user", content: "What is Coding" },
+    // { role: "system", content: "Answer in 20 words" },
+    // { role: "developer", content: "give a basic example in JS" },
+    { role: "user", content: prompt },
   ],
-  model: "gpt-4o-mini",
+  model
 });
 
 // console.log("data key-1", response.output_text);
 response.then((result) => console.log("data key-2", result.output_text));
+
+function calculateToken() {
+  const enc = encoding_for_model(model);
+  const tokenCount = enc.encode(prompt);
+  console.log("Token Count:", tokenCount);
+}
+
+calculateToken();
