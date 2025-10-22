@@ -5,12 +5,18 @@ dotenv.config();
 let testKey = "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"; // ✅ secure key
 const openai = new OpenAI({ apiKey: process.env.TEST_KEY || testKey });
 
+const context = [
+  { role: "system", content: "Keep Answer Short and Simple" },
+]
+
 async function aiAnswer(question) {
+  context.push({ role: "user", content: question });
   const response = await openai.responses.create({
     model: "gpt-4o-mini",
-    input: question,
+    input: context,
     store: true,
   });
+  context.push({ role: "assistant", content: response.output_text });
   console.log("Data -: ", response.output_text);
 }
 
