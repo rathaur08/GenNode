@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { writeFileSync } from "fs";
 
 dotenv.config();
-const client = new OpenAI({ apiKey: process.env.TEST_KEY });
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 async function main() {
   const response = await client.audio.speech.create({

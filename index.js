@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-let testKey = "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"; // ✅ secure key
+let testKey = "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"; // ✅ secure key
 
 const openai = new OpenAI({ apiKey: process.env.TEST_KEY || testKey });
 

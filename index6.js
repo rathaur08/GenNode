@@ -7,7 +7,7 @@ import { writeFileSync } from "fs";
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
-const client = new OpenAI({ apiKey: process.env.TEST_KEY });
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 app.get('/', (req, res) => {
   res.send(`<form action="/audio" method="post">
