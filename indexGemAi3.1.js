@@ -2,8 +2,6 @@ import { GoogleGenAI } from '@google/genai';
 import dotenv from 'dotenv';
 import express from "express";
 import multer from 'multer';
-import path from "path";
-import { createReadStream, unlinkSync, writeFileSync } from "fs";
 import { readFileSync } from "fs"
 
 const app = express();
@@ -23,9 +21,7 @@ app.get('/', (req, res) => {
 
 app.post('/upload', upload.single("image"), async (req, res) => {
   const path = req.file.path;
-
   res.send(await main(path));
-
 });
 
 async function main(path) {
@@ -51,5 +47,4 @@ async function main(path) {
   return response.text;
 }
 
-// main();
 app.listen(3200);
