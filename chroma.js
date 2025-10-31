@@ -41,4 +41,19 @@ async function main() {
 //   console.log('Collection created:', collection.name);
 // }
 
-main().catch(console.error);
+// main().catch(console.error);
+
+async function findSimilarity() {
+  const colors = await client.getCollection({
+    name: 'colors',
+  })
+  const query = await generateEmbedding('get all  colors');
+  // console.log(query[0].embedding);
+
+  const result = await colors.query({
+    queryEmbeddings: [query[0].embedding],
+    nResults: 1,
+  })
+}
+
+findSimilarity();
